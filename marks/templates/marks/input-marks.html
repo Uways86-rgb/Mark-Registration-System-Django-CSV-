@@ -1,0 +1,33 @@
+{% extends 'marks/base.html' %}
+
+{% block content %}
+<h2>Input Marks</h2>
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="student_id">Student ID</label>
+        <input type="text" class="form-control" id="student_id" name="student_id" required>
+    </div>
+    <div class="form-group">
+        <label for="student_name">Student Name</label>
+        <input type="text" class="form-control" id="student_name" name="student_name" required>
+    </div>
+    <div class="form-group">
+        <label for="module_code">Module Code</label>
+        <input type="text" class="form-control" id="module_code" name="module_code" required>
+    </div>
+    <div class="form-group">
+        <label for="classwork1">Classwork 1</label>
+        <input type="number" class="form-control" id="classwork1" name="classwork1" required>
+    </div>
+    <div class="form-group">
+        <label for="classwork2">Classwork 2</label>
+        <input type="number" class="form-control" id="classwork2" name="classwork2" required>
+    </div>
+    <div class="form-group">
+        <label for="classwork3">Classwork 3</label>
+        <input type="number" class="form-control" id="classwork3" name="classwork3" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

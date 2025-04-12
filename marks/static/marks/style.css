@@ -1,0 +1,111 @@
+/* marks/static/marks/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+    background-image: url('https://images.freecreatives.com/wp-content/uploads/2016/04/Abstract-Website-Background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Enhance buttons */
+.form-button {
+    margin: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Add shadow to the main content */
+.main-content {
+    padding: 20px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Styling for tables */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Header styles */
+header {
+    background-color: rgba(0, 123, 255, 0.8);
+    color: #fff;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 5px solid #0056b3;
+}
+
+/* Navigation styles */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-button {
+    color: #fff !important;
+    padding: 15px 25px;
+    margin: 5px;
+    background-color: #00bcd4;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.nav-button:hover {
+    background-color: #0097a7;
+    transform: scale(1.05);
+}
+
+/* Footer styles */
+footer {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    border-top: 5px solid #0056b3;
+}

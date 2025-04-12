@@ -1,0 +1,72 @@
+{% extends 'marks/base.html' %}
+
+{% block content %}
+<h2>View Marks</h2>
+
+<form method="GET" action="{% url 'view-marks' %}">
+    <div class="form-group">
+        <label for="module_code">Module Code</label>
+        <input type="text" class="form-control" id="module_code" name="module_code" placeholder="Enter module code" value="{{ module_code }}">
+    </div>
+    <button type="submit" class="btn btn-primary"> <i class="fa fa-filter"></i> Filter</button>
+    <a href="{% url 'view-marks' %}" class="btn btn-secondary"> <i class="fa fa-list"></i> Clear</a>
+     {{ marks|length }} records found
+</form>
+
+<table class="table table-bordered mt-4">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Student Name</th>
+            <th>Module Code</th>
+            <th>Classwork 1</th>
+            <th>Classwork 2</th>
+            <th>Classwork 3</th>
+            <th>Total</th>
+            <th colspan="3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mark in marks %}
+        <tr>
+            <td>{{ mark.student_id }}</td>
+            <td>{{ mark.student_name }}</td>
+            <td>{{ mark.module_code }}</td>
+            <td>{{ mark.classwork1 }}</td>
+            <td>{{ mark.classwork2 }}</td>
+            <td>{{ mark.classwork3 }}</td>
+            <td>{{ mark.total }}</td>
+            <td> 
+                <form action="{% url 'show_one_record' %}" method="GET">
+                    {% csrf_token %}
+                    <input type="hidden" name="student_id" value="{{ mark.student_id }}">
+                    <input type="hidden" name="module_code" value="{{ mark.module_code }}">
+                    <button type="submit" class="btn btn-link"><i class="fa fa-eye"></i></button>
+                </form>
+            </td>
+            <td>
+                <form action="{% url 'delete-marks' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="student_id" value="{{ mark.student_id }}">
+                    <input type="hidden" name="module_code" value="{{ mark.module_code }}">
+                    <button type="submit" class="btn btn-link"><i class="fa fa-trash text-danger"></i></button>
+                </form>
+            </td>
+            <td>
+                <form action="{% url 'update-marks' %}" method="GET">
+                    {% csrf_token %}
+                    <input type="hidden" name="student_id" value="{{ mark.student_id }}">
+                    <input type="hidden" name="module_code" value="{{ mark.module_code }}">
+                    <input type="hidden" name="student_name" value="{{ mark.student_name }}">
+                    <input type="hidden" name="classwork1" value="{{ mark.classwork1 }}">
+                    <input type="hidden" name="classwork2" value="{{ mark.classwork2 }}">
+                    <input type="hidden" name="classwork3" value="{{ mark.classwork3 }}">
+
+                    <button type="submit" class="btn btn-link"><i class="fa fa-edit"></i></button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,166 @@
+<!-- marks/templates/marks/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Registration System</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'marks/styles.css' %}">
+    <script src="{% static 'marks/scripts.js' %}"></script>
+</head>
+<body>
+    <header>
+        <h1>Mark Registration System</h1>
+    </header>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('input-marks')">Input Marks</button>
+        <button onclick="showPage('view-marks')">View Marks</button>
+        <button onclick="showPage('update-marks')">Update Marks</button>
+        <button onclick="showPage('visualisation')">Visualisation</button>
+    </nav>
+    <div class="main-content content-section" id="home">
+        <h1>Welcome</h1>
+        <h2>Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Input</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Number of Students</td>
+                    <td><input type="number" id="num_students" placeholder="Enter number of students"></td>
+                </tr>
+                <tr>
+                    <td>Number of Modules</td>
+                    <td><input type="number" id="num_modules" placeholder="Enter number of modules"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="form-button" onclick="saveRecords()">Save Records</button>
+        <div id="home_error_message" class="error-message"></div>
+        <div id="continue_button_container" style="display: none;">
+            <button class="form-button" onclick="continueToNextPage()">Continue</button>
+        </div>
+    </div>
+
+    <div class="main-content content-section" id="input-marks">
+        <h2>Mark Entry Form</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Mark Entry Form</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Code</td>
+                    <td><input type="text" id="module_code" name="module_code" required></td>
+                </tr>
+                <tr>
+                    <td>Module Name</td>
+                    <td><input type="text" id="module_name" name="module_name" required></td>
+                </tr>
+                <tr>
+                    <td>Coursework 1 Mark</td>
+                    <td><input type="number" id="coursework_1_mark" name="coursework_1_mark" required></td>
+                </tr>
+                <tr>
+                    <td>Coursework 2 Mark</td>
+                    <td><input type="number" id="coursework_2_mark" name="coursework_2_mark" required></td>
+                </tr>
+                <tr>
+                    <td>Coursework 3 Mark</td>
+                    <td><input type="number" id="coursework_3_mark" name="coursework_3_mark" required></td>
+                </tr>
+                <tr>
+                    <td>Student ID</td>
+                    <td><input type="text" id="student_id" name="student_id" required></td>
+                </tr>
+                <tr>
+                    <td>Student Name</td>
+                    <td><input type="text" id="student_name" name="student_name" required></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <label for="male">Male</label>
+                        <input type="checkbox" id="male" name="gender" value="Male">
+                        <label for="female">Female</label>
+                        <input type="checkbox" id="female" name="gender" value="Female">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date of Entry</td>
+                    <td><input type="date" id="date_of_entry" name="date_of_entry" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="form-button" onclick="submitMarks()">Submit Marks</button>
+        <button class="form-button" onclick="resetMarks()">Reset</button>
+        <div id="input_marks_error_message" class="error-message"></div>
+    </div>
+
+    <div class="main-content content-section" id="view-marks">
+        <h2>View Marks</h2>
+        <input type="text" id="module_code_input" placeholder="Enter Module Code">
+        <button class="form-button" onclick="viewMarks()">View Marks</button>
+        <div id="marks_display"></div>
+        <div id="error_message" class="error-message"></div>
+        <button onclick="showUpdateMarksPage()">Continue</button>
+    </div>
+
+
+    <div class="main-content content-section" id="update-marks">
+        <h2>Modify Marks</h2>
+        <p>Search for marks by Module Code and Student ID to modify them.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Modify Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Module Code</td>
+                    <td><input type="text" id="modify_module_code" name="modify_module_code" required></td>
+                </tr>
+                <tr>
+                    <td>Student ID</td>
+                    <td><input type="text" id="modify_student_id" name="modify_student_id" required></td>
+                </tr>
+                <tr>
+                    <td>Date of Entry</td>
+                    <td><input type="date" id="modify_date_of_entry" name="modify_date_of_entry" required></td>
+                </tr>
+                <tr>
+                    <td>Coursework 1</td>
+                    <td><input type="number" id="modify_coursework_1" name="modify_coursework_1" required></td>
+                </tr>
+                <tr>
+                    <td>Coursework 2</td>
+                    <td><input type="number" id="modify_coursework_2" name="modify_coursework_2" required></td>
+                </tr>
+                <tr>
+                    <td>Coursework 3</td>
+                    <td><input type="number" id="modify_coursework_3" name="modify_coursework_3" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="form-button" onclick="submitModifyMarks()">Submit</button>
+    </div>
+
+    <div class="main-content content-section" id="visualisation">
+        <!-- Your visualisation code here -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Mark Registration System</p>
+    </footer>
+</body>
+</html>

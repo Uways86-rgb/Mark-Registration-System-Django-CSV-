@@ -1,0 +1,70 @@
+{% extends 'marks/base.html' %}
+
+{% block content %}
+<h2 class="text-center">Visualisation</h2>
+
+<form id="moduleForm" class="text-center">
+    <label for="module_code">Choose a module :</label>
+    <select id="module_code">
+        <option value="MATH101">MATH101</option>
+        <option value="PHY102">PHY102</option>
+        <option value="CS103">CS103</option>
+        
+    </select>
+    <button type="button" onclick="fetchStudents()">Select</button>
+</form>
+
+
+<!-- Loading Message -->
+<p id="loadingMessage" class="text-center">Loading chart...</p>
+
+<!-- Chart Container -->
+<div id="chart-container" class="mt-4">
+    <canvas id="marksChart"></canvas>
+</div>
+
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch("{% url 'chart-data' %}")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to load chart data');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('loadingMessage').style.display = 'none'; // Hide loading text
+
+                const ctx = document.getElementById('marksChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.labels,
+                        datasets: [{
+                            label: 'Total Marks',
+                            data: data.values,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                document.getElementById('loadingMessage').innerText = "Failed to load chart.";
+                console.error('Error fetching chart data:', error);
+            });
+    });
+</script>
+
+{% endblock %}

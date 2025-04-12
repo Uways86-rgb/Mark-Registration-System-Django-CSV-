@@ -1,0 +1,32 @@
+{% extends 'marks/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div id="home" class="content-section">
+    <h1>Welcome</h1>
+    <h2>Records</h2>
+    <form method="POST" action="{% url 'index' %}">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Field</th>
+                    <th>Input</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Number of Students</td>
+                    <td><input type="number" class="form-control" name="num_students" placeholder="Enter number of students" required></td>
+                </tr>
+                <tr>
+                    <td>Number of Modules</td>
+                    <td><input type="number" class="form-control" name="num_modules" placeholder="Enter number of modules" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary form-button">Save Records</button>
+    </form>
+</div>
+{% endblock %}
